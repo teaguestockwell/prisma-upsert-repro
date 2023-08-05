@@ -1,0 +1,31 @@
+{
+  "name": "prisma-upsert-repro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "db:up": "docker run --name dev-db --rm -d -e MYSQL_USER=user -e MYSQL_PASSWORD=password -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=db -p 3306:3306 mysql && sleep 15 && DATABASE_URL=mysql://user:password@localhost:3306/db prisma migrate reset -f",
+    "db:migrate": "docker run --name migration --rm -d -e MYSQL_USER=user -e MYSQL_PASSWORD=password -e MYSQL_ROOT_PASSWORD=password -p 3306:3306 mysql && sleep 15 && DATABASE_URL=mysql://root:password@localhost:3306/db prisma migrate dev && docker kill migration",
+    "upsert": "DATABASE_URL=mysql://user:password@localhost:3306/db ts-node ./upsert.ts",
+    "studio": "DATABASE_URL=mysql://user:password@localhost:3306/db prisma studio"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/teaguestockwell/prisma-upsert-repro.git"
+  },
+  "author": "teagueStockwell",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/teaguestockwell/prisma-upsert-repro/issues"
+  },
+  "homepage": "https://github.com/teaguestockwell/prisma-upsert-repro#readme",
+  "dependencies": {
+    "@prisma/client": "^5",
+    "next": "^13.4.12",
+    "prisma": "^5",
+    "typescript": "^5.1.6"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.8"
+  }
+}
