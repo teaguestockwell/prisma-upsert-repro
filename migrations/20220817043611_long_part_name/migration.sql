@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE `Part` MODIFY `name` VARCHAR(256) NOT NULL;

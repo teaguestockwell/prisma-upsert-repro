@@ -1,3 +1,0 @@
--- AlterTable
-ALTER TABLE `Post` ALTER COLUMN `topicName` DROP DEFAULT,
-    ALTER COLUMN `userId` DROP DEFAULT;
